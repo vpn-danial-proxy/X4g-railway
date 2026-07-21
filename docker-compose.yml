@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  x4g:
+    build: .
+    container_name: x4g-railway
+    restart: unless-stopped
+    ports:
+      - "8080:8080"
+      - "443:443"
+    environment:
+      - PANEL_USER=admin
+      - PANEL_PASS=x4g2026
+      - UUID=auto
+      - DOMAIN=localhost
+      - PORT=8080
+      - REALITY_ENABLED=true
+      - FRAGMENT_ENABLED=true
+      - TELEGRAM_BOT_TOKEN=
+      - TELEGRAM_ADMIN_ID=
+    volumes:
+      - ./logs:/var/log
+    networks:
+      - x4g-network
+
+networks:
+  x4g-network:
+    driver: bridge
